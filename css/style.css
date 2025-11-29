@@ -33,6 +33,7 @@ html {
     animation:
             move-x 2s linear infinite alternate,
             move-y 1.68s linear infinite alternate;
+    animation-delay: -1.7s, -0.6s;
 }
 
 .loading{
