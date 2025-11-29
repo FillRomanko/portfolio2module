@@ -60,9 +60,9 @@ html {
 
 .loading_bar div{
     height: 100%;
-    width: 0;
+    width: 100%;
     background: #f5e004;
-    animation: width var(--vanish-delay) linear;
+    animation: width var(--vanish-delay) linear forwards;
 }
 
 @keyframes vanish {
