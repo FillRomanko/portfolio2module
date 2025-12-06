@@ -1,5 +1,6 @@
 @import url('reset.css');
 @import url('fonts.css');
+@import url('animations.css');
 
 :root {
     --size: 12vh;
@@ -65,39 +66,22 @@ html {
     animation: width var(--vanish-delay) linear forwards;
 }
 
-@keyframes vanish {
-    0%   { opacity: 1; }
-    100% { opacity: 0; visibility: hidden; }
-}
-
-@keyframes move-x {
-    from {
-        left: 0;
-    }
-    to {
-        left: calc(100% - var(--size));
-    }
-}
-
-@keyframes move-y {
-    from {
-        top: 0;
-    }
-    to {
-        top: calc(100% - var(--size));
-    }
-}
-
-@keyframes width{
-    0% { width: 0% }
-    55% { width: 30% }
-    75% { width: 35% }
-    100% { width: 100% }
-}
-
 .all {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: revanish 1s forwards;
+    animation-delay: var(--vanish-delay);
+}
+
+.plate{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    p {
+        font-size: 51vh;
+    }
 }

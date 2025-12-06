@@ -1,0 +1,37 @@
+@keyframes vanish {
+    0%   { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes revanish {
+    0%   {
+        overflow-y: hidden;}
+    100% {
+        overflow-y: auto;
+    }
+}
+
+@keyframes move-x {
+    from {
+        left: 0;
+    }
+    to {
+        left: calc(100% - var(--size));
+    }
+}
+
+@keyframes move-y {
+    from {
+        top: 0;
+    }
+    to {
+        top: calc(100% - var(--size));
+    }
+}
+
+@keyframes width{
+    0% { width: 0% }
+    55% { width: 30% }
+    75% { width: 35% }
+    100% { width: 100% }
+}
