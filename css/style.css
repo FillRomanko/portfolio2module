@@ -5,10 +5,19 @@
 :root {
     --size: 12vh;
     --vanish-delay: 4s;
+    --vanish-duration: 1s;
+    --vanish-time: calc(var(--vanish-delay) + var(--vanish-duration));
 }
 
-html {
-    scroll-behavior: smooth;
+body {
+    background-color: #2A4282;
+    color: #F7E104;
+    animation: body-overflow var(--vanish-time);
+}
+
+/* Это что бы вертикальный скрол видно не было */
+body::-webkit-scrollbar {
+    display: none;         
 }
 
 * {
@@ -21,9 +30,11 @@ html {
     position: fixed;
     inset: 0;
     background-color: #214282;
-    animation: vanish 1s forwards;
+    animation: vanish var(--vanish-duration) forwards;
     animation-delay: var(--vanish-delay);
+    z-index: 10000;
 }
+
 
 .logo {
     background-size: 100% 100%;
@@ -63,7 +74,7 @@ html {
     height: 100%;
     width: 100%;
     background: #f5e004;
-    animation: width var(--vanish-delay) linear forwards;
+    animation: width var(--vanish-delay) forwards;
 }
 
 .all {
@@ -71,7 +82,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: revanish 1s forwards;
+    animation: revanish var(--vanish-duration) forwards;
     animation-delay: var(--vanish-delay);
 }
 
@@ -82,6 +93,12 @@ html {
     align-items: center;
     justify-content: center;
     p {
-        font-size: 51vh;
+        font-size: 25vw;
+        position: relative;
+        animation: chaos-position 2s ease infinite,
+        chaos-rotate 2s ease infinite,
+        chaos-scale 2s ease infinite;
     }
 }
+
+
