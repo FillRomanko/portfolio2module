@@ -13,9 +13,10 @@ body {
     background-color: #2A4282;
     color: #F7E104;
     animation: body-overflow var(--vanish-time);
+    overflow-x: hidden;
 }
 
-/* Это что бы вертикальный скрол видно не было */
+/* Это что бы скрол видно не было */
 body::-webkit-scrollbar {
     display: none;         
 }
@@ -82,6 +83,7 @@ body::-webkit-scrollbar {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20vw;
     animation: revanish var(--vanish-duration) forwards;
     animation-delay: var(--vanish-delay);
 }
@@ -101,4 +103,93 @@ body::-webkit-scrollbar {
     }
 }
 
+.cage_animate{
+    width: 100vw;
+    display: flex;
+}
 
+.pre_vanish, .after_vanish{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.cage_animate:focus > .pre_vanish{
+    animation: vanish var(--vanish-duration) forwards;
+    animation-iteration-count: initial;
+}
+
+.happy_smile{
+    height: 15vw;
+    width: 15vw;
+    background-image: url("../images/happy_smile.svg");
+    background-size: 100% 100%;
+    left: 5vw;
+    bottom: 10vh;
+    animation:
+            walk 4.8s linear infinite,
+            hop 1.2s ease-in-out infinite;
+}
+.after_vanish{
+    position: relative;
+    visibility: hidden;
+    perspective: 40000px;
+}
+.cage_animate:focus > .after_vanish{
+    animation: revanish var(--vanish-duration) forwards;
+}
+.cage_animate:focus > .after_vanish > .cage{
+    animation: falling var(--vanish-duration) forwards;
+    animation-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.cage_animate:focus > .after_vanish > .crazy_men{
+    animation: unfold calc(2 * var(--vanish-duration)) var(--vanish-duration) ease-out forwards;
+}
+
+.cage_animate:focus > .after_vanish > .amaze{
+    animation: speaking calc(2 * var(--vanish-duration)) var(--vanish-duration) ease-out forwards;
+}
+
+.cage, .sad_smile {
+    position: absolute;
+    top: 10%;
+    left: 10vw;
+    transform: translate(-50%, -50%); 
+    background-size: 100% 100%;
+}
+
+.cage{
+    background-image: url("../images/cage.svg");
+    height: 27vw;
+    width: 24vw;
+    z-index: 2;
+}
+
+.sad_smile{
+    height: 15vw;
+    width: 15vw;
+    background-image: url("../images/sad_smile.svg");
+    z-index: 1;
+}
+
+.crazy_men{
+    position: absolute;
+    left: 60vw;
+    top: -10vw;
+    height: 25vw;
+    width: 25vw;
+    background-image: url("../images/crazy_men.svg");
+    background-size: 100% 100%;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform-origin: center center;
+    transform: rotateY(90deg);
+}
+
+.amaze{
+    font-size: 3vw;
+    position: absolute;
+    left: 45vw;
+    top: -10vw;
+    transform:scale(0) translate(250%, 250%);
+}
