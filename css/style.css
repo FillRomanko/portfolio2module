@@ -3,14 +3,13 @@
 @import url('animations.css');
 
 :root {
-    --size: 12vh;
-    --vanish-delay: 4s;
+    --vanish-delay: 3s;
     --vanish-duration: 1s;
     --vanish-time: calc(var(--vanish-delay) + var(--vanish-duration));
 }
 
 body {
-    background-color: #2A4282;
+    background-color: #0040ff;
     color: #ffffff;
     animation: body-overflow var(--vanish-time);
     overflow-x: hidden;
@@ -47,23 +46,27 @@ body::-webkit-scrollbar {
 .opener{
     position: fixed;
     inset: 0;
-    background-color: #214282;
+    background-color: #0058ff;
     animation: vanish var(--vanish-duration) forwards;
     animation-delay: var(--vanish-delay);
     z-index: 10000;
 }
 
 
-.logo {
-    background-size: 100% 100%;
-    position: absolute;
-    background-image: url("../images/icon.svg");
-    width: var(--size);
-    height: var(--size);
-    animation:
-            move-x 2s linear infinite alternate,
-            move-y 1.68s linear infinite alternate;
-    animation-delay: -1.7s, -0.6s;
+.kaomoji {
+    position: fixed;
+    inset: 0;
+    display: inline-block;
+    font-size: 4vw;
+    font-weight: 900;
+    color: white;
+    .x{
+        animation: move-x 3s linear infinite alternate
+    }
+    .y{
+        display: inline-block;
+        animation: move-y 2.27s linear infinite alternate;
+    }
 }
 
 .loading{
@@ -76,13 +79,13 @@ body::-webkit-scrollbar {
     height: 100%;
     z-index: 1;
     font-size: 10vh;
-    color: #F7E104;
+    color: #f50404;
 }
 
 .loading_bar{
     width: 300px;
-    height: 2.5vh;
-    border: 2px solid #F7E104;
+    height: 6vh;
+    border: 2px solid #f50404;
     border-radius: 4px;
     overflow: hidden;
     box-sizing: border-box;
@@ -91,8 +94,9 @@ body::-webkit-scrollbar {
 .loading_bar div{
     height: 100%;
     width: 100%;
-    background: #f5e004;
     animation: width var(--vanish-delay) forwards;
+    font-size: 2vw;
+    color: #f50404;
 }
 
 .all {
@@ -108,7 +112,7 @@ body::-webkit-scrollbar {
 .plate{
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1vw;
     align-items: center;
     justify-content: center;
 }
@@ -118,8 +122,8 @@ body::-webkit-scrollbar {
     position: relative;
     animation: chaos-position 2s ease infinite,
     chaos-rotate   2s ease infinite,
-    chaos-scale    2s ease infinite;
-    animation-delay: 0s, 0s, 0s;
+    chaos-scale    2s ease infinite,
+    chaos-weight 2s ease infinite;
 }
 
 .plate p::after{
