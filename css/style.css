@@ -87,7 +87,7 @@ body::-webkit-scrollbar {
 }
 
 .loading_bar{
-    width: 300px;
+    width: 15vw;
     height: 3vw;
     border: 2px solid #f50404;
     border-radius: 4px;
