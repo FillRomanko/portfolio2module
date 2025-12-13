@@ -13,6 +13,11 @@
     99% {overflow-y: hidden;}
     100% {overflow-y: auto;}
 }
+
+@keyframes spin{
+    0% {transform: translate(-50%, -50%) rotate(0deg);}
+    100% {transform: translate(-50%, -50%) rotate(360deg);}
+}
 @keyframes move-x {
     from {
         left: 0;

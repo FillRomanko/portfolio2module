@@ -11,9 +11,26 @@
 
 body {
     background-color: #2A4282;
-    color: #F7E104;
+    color: #ffffff;
     animation: body-overflow var(--vanish-time);
     overflow-x: hidden;
+}
+
+body:before {
+    content: "";
+    position: absolute;
+    width: 280vw;           
+    height: 280vw;
+    border-radius: 50%;
+    left: 50vw;              
+    top: 100vw;              
+    transform: translate(-50%, -50%);
+    background-image: repeating-conic-gradient(
+            red 0deg 15deg,
+            transparent 15deg 30deg
+    );
+    animation: spin 20s linear infinite;
+    z-index: -1;  
 }
 
 /* Это что бы скрол видно не было */
@@ -94,13 +111,24 @@ body::-webkit-scrollbar {
     gap: 1rem;
     align-items: center;
     justify-content: center;
-    p {
-        font-size: 25vw;
-        position: relative;
-        animation: chaos-position 2s ease infinite,
-        chaos-rotate 2s ease infinite,
-        chaos-scale 2s ease infinite;
-    }
+}
+
+.plate p{
+    font-size: 25vw;
+    position: relative;
+    animation: chaos-position 2s ease infinite,
+    chaos-rotate   2s ease infinite,
+    chaos-scale    2s ease infinite;
+    animation-delay: 0s, 0s, 0s;
+}
+
+.plate p::after{
+    content: attr(data-char);
+    position: absolute;
+    inset: 0;
+    color: black;
+    z-index: -1;
+    translate: 1vw 1vw;
 }
 
 .cage_animate{
