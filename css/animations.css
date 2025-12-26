@@ -4,19 +4,19 @@
 }
 
 @keyframes revanish {
-    0% { opacity: 0; visibility: hidden; }
-    100%   { opacity: 1; visibility: initial; }
+    0%   { opacity: 0; visibility: hidden; }
+    100% { opacity: 1; visibility: initial; }
 }
 
 @keyframes body-overflow{
-    0% {overflow-y: hidden;}
-    99% {overflow-y: hidden;}
-    100% {overflow-y: scroll;}
+    0%   { overflow-y: hidden; }
+    99%  { overflow-y: hidden; }
+    100% { overflow-y: scroll; }
 }
 
 @keyframes spin{
-    0% {--angle: 0deg;}
-    100% {--angle: 360deg;}
+    0%   { --angle: 0deg; }
+    100% { --angle: 360deg; }
 }
 
 @keyframes move-x {
@@ -64,17 +64,17 @@
 }
 
 @keyframes chaos-weight{
-    0% { font-weight: 100; }
-    50% { font-weight: 800; }
+    0%   { font-weight: 100; }
+    50%  { font-weight: 800; }
     100% { font-weight: 100; }
 }
 
 @keyframes welcome {
     0%   { transform: translateX(30%); }
-    100%   { transform: translateX(-10%); }
+    100% { transform: translateX(-10%); }
 }
 @keyframes run{
-    0% { transform: translateX(-10%); }
+    0%   { transform: translateX(-10%); }
     100% { transform: translateX(-50%); }
 }
 @keyframes laugh {

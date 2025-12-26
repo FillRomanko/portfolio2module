@@ -57,8 +57,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     inset: 0;
     background-color: #0058ff;
-    animation: vanish var(--vanish-duration) forwards;
-    animation-delay: var(--vanish-delay);
+    animation: vanish var(--vanish-duration) linear var(--vanish-delay) forwards;
     z-index: 10000;
 }
 
@@ -133,8 +132,8 @@ body::-webkit-scrollbar {
     font-size: 25vw;
     position: relative;
     animation: chaos-position 2s ease infinite,
-    chaos-rotate   2s ease infinite,
-    chaos-scale    2s ease infinite,
+    chaos-rotate 2s ease infinite,
+    chaos-scale 2s ease infinite,
     chaos-weight 2s ease infinite;
 }
 
@@ -160,7 +159,7 @@ body::-webkit-scrollbar {
     z-index: 10000;
     transform: translateX(60%);
     animation: welcome 4s var(--vanish-delay) linear forwards,
-            run 4s calc(var(--vanish-delay) + 4s) linear infinite;
+    run 4s calc(var(--vanish-delay) + 4s) linear infinite;
 }
 
 .line-hitbox{
