@@ -81,7 +81,6 @@ body::-webkit-scrollbar {
 
 .loading{
     inset: 0;
-    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,8 +149,6 @@ body::-webkit-scrollbar {
 
 .running_strokes{
     position: absolute;
-    top: 0;
-    left: 0;
     inset: 0;
     z-index: 2;
 }
@@ -169,7 +166,7 @@ body::-webkit-scrollbar {
 .line-hitbox{
     position: absolute;
     width: 100%;
-    height: 5vw;
+    height: 4vw;
     background: transparent;
     border: 0;
     cursor: pointer;
