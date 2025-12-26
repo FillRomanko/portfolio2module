@@ -8,28 +8,39 @@
     --vanish-time: calc(var(--vanish-delay) + var(--vanish-duration));
 }
 
-body {
-    background-color: #0040ff;
-    color: #ffffff;
-    animation: body-overflow var(--vanish-time);
+* {
+    font-family: 'Geist', sans-serif;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html{
+    animation: body-overflow var(--vanish-delay);
     overflow-x: hidden;
 }
 
-body:before {
-    content: "";
-    position: absolute;
-    width: 280vw;           
-    height: 280vw;
-    border-radius: 50%;
-    left: 50vw;              
-    top: 100vw;              
-    transform: translate(-50%, -50%);
+/*гениальнейшая вещь, работает во всех браузерах младше 2020 года. Если не сработает, то просто не будет анимации фона*/
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+body {
+    background-color: #0040ff;
+    color: #ffffff;
+    height: 210vw;
+    max-height: 210vw;
+
+    --angle: 0deg;
     background-image: repeating-conic-gradient(
+            from var(--angle) at 50vw 100vw,
             red 0deg 15deg,
             transparent 15deg 30deg
     );
+    background-repeat: no-repeat;
+    background-size: 280vw 280vw;
     animation: spin 20s linear infinite;
-    z-index: -1;  
 }
 
 /* Это что бы скрол видно не было */
@@ -37,11 +48,6 @@ body::-webkit-scrollbar {
     display: none;         
 }
 
-* {
-    font-family: 'Geist', sans-serif;
-    text-decoration: none;
-    box-sizing: border-box;
-}
 
 .opener{
     box-sizing: border-box;
@@ -75,6 +81,7 @@ body::-webkit-scrollbar {
 
 .loading{
     inset: 0;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,19 +111,21 @@ body::-webkit-scrollbar {
 }
 
 .all {
+    position: relative;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 20vw;
-    animation: revanish var(--vanish-duration) forwards;
-    animation-delay: var(--vanish-delay);
+    animation: revanish var(--vanish-duration) var(--vanish-delay) forwards;
+    z-index: 1;
 }
 
 .plate{
     display: flex;
     flex-wrap: wrap;
-    gap: 1vw;
+    gap: 0.95vw;
     align-items: center;
     justify-content: center;
 }
@@ -139,93 +148,44 @@ body::-webkit-scrollbar {
     translate: 1vw 1vw;
 }
 
-.cage_animate{
-    width: 100vw;
-    display: flex;
-}
-
-.pre_vanish, .after_vanish{
-    display: inline-block;
-    vertical-align: top;
-}
-
-.cage_animate:focus > .pre_vanish{
-    animation: vanish var(--vanish-duration) forwards;
-    animation-iteration-count: initial;
-}
-
-.happy_smile{
-    height: 15vw;
-    width: 15vw;
-    background-image: url("../images/happy_smile.svg");
-    background-size: 100% 100%;
-    left: 5vw;
-    bottom: 10vh;
-    animation:
-            walk 4.8s linear infinite,
-            hop 1.2s ease-in-out infinite;
-}
-.after_vanish{
-    position: relative;
-    visibility: hidden;
-    perspective: 40000px;
-}
-.cage_animate:focus > .after_vanish{
-    animation: revanish var(--vanish-duration) forwards;
-}
-.cage_animate:focus > .after_vanish > .cage{
-    animation: falling var(--vanish-duration) forwards;
-    animation-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
-}
-
-.cage_animate:focus > .after_vanish > .crazy_men{
-    animation: unfold calc(2 * var(--vanish-duration)) var(--vanish-duration) ease-out forwards;
-}
-
-.cage_animate:focus > .after_vanish > .amaze{
-    animation: speaking calc(2 * var(--vanish-duration)) var(--vanish-duration) ease-out forwards;
-}
-
-.cage, .sad_smile {
+.running_strokes{
     position: absolute;
-    top: 10%;
-    left: 10vw;
-    transform: translate(-50%, -50%); 
-    background-size: 100% 100%;
-}
-
-.cage{
-    background-image: url("../images/cage.svg");
-    height: 27vw;
-    width: 24vw;
+    top: 0;
+    left: 0;
+    inset: 0;
     z-index: 2;
 }
-
-.sad_smile{
-    height: 15vw;
-    width: 15vw;
-    background-image: url("../images/sad_smile.svg");
-    z-index: 1;
-}
-
-.crazy_men{
+.running_stroke{
+    background: #ffffff;
+    color: #000000;
     position: absolute;
-    left: 60vw;
-    top: -10vw;
-    height: 25vw;
-    width: 25vw;
-    background-image: url("../images/crazy_men.svg");
-    background-size: 100% 100%;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    transform-origin: center center;
-    transform: rotateY(90deg);
-}
-
-.amaze{
     font-size: 3vw;
+    z-index: 10000;
+    transform: translateX(60%);
+    animation: welcome 4s var(--vanish-delay) linear forwards,
+            run 4s calc(var(--vanish-delay) + 4s) linear infinite;
+}
+
+.line-hitbox{
     position: absolute;
-    left: 45vw;
-    top: -10vw;
-    transform:scale(0) translate(250%, 250%);
+    width: 100%;
+    height: 5vw;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.line-overlay {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.line-hitbox:focus ~ .line-overlay {
+    animation: revanish 0.1s forwards,
+    vanish 0.2s linear 4.1s forwards;
+}
+
+.line-hitbox:focus ~ .line-overlay > .running_stroke {
+    animation: laugh 4s linear 0.1s 1;
 }
